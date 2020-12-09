@@ -1,5 +1,8 @@
 # five-minute-dungeon-project
 
+Hello! This is a digital copy of 
+https://www.philibertnet.com/fr/spin-master/84599-5-minute-dungeon-0778988290804.html
+
 ## Project setup
 ```
 npm install
