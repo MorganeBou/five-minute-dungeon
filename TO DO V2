@@ -1,0 +1,68 @@
+    V2
+        Avoir une main de joueur
+            -Faire un post avec le nombre de joueur et le héro choisi et récupérer les players (composant Game.vue)
+                    - Post : currentPlayer {name, hero}
+
+                    -CurrentPlayer {}
+                        - id
+                        - name
+                        - color
+                        - drawPileCount
+                        - availableSkills[] (la main)
+                            - symbols []
+                        - discardedSkills []
+                            - symbols []
+                    -Allies {}
+                        - id
+                        - name
+                        - color
+                        - drawPileCount
+                        - discardedSkills []
+                          - symbols []
+
+                     -Playground :
+                        - playedSkills []
+                            - owner {}
+                                - name
+                                - color
+                                - id
+
+                            - symbols
+
+                    - représenter les joueurs + DrawPile + DiscardPile
+
+            - Quand est ce qu'on récupère la première main (un tableau ? avec des skills) ? + la drawPileCount
+             - où est socké la main du joueur ?
+
+        Jouer une carte (l'ajouter sur le "Playground")
+        - Créer le playground : un tableau de playedSkills > faire un GET sur la Game/id pour tout maj
+             - Passer la carte de la main du joueur au playground
+                - maj la main du joueur
+                - maj du playground (
+                -si le nombre de symbole des cartes skills >= symboles de la current door; alors success passe à true
+
+
+        Valider qu'il y a assez de symbole joués avant de passer a la porte suivante
+        - si pas assez de symbols > CSS effet de bounds
+        - Si success est à true, alors un "bouton" s'affiche pour passer à la porte suivante. (du coup, le goNextDoor
+            ne sera plus sur la currentDoor)
+         -le GoNextDoor doit vider le playGround
+
+
+        Piocher :
+        - ajouter la carte suivante (de la DrawPile) vers AvailableSKills
+        - mise à jour de la main
+
+        response = 1 skill
+
+        Défausser :
+        - ajouter +1 carte à la défausse / discardPile
+            - la Discard Pile = [] > on stocke la défausse
+           **POST
+            envoyer un carte à ajouter à la défausse
+            response = un tableau de la défausse maj
+
+
+
+
+

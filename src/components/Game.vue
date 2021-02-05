@@ -1,10 +1,23 @@
 <template>
     <div>
-        <div>
-            <DoorsZone :remainingDoorsCount="this.game.remainingDoorsCount"
-                       :gameId="this.game.id">
+        <div class="container">
+            <div class="row">
+                <div class="col-3"></div>
+                <DoorsZone :game="game" v-on:doorChanged="game = $event">
 
-            </DoorsZone>
+                </DoorsZone>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+
+                <div class="col-12">
+                    <Hand :skillsAvailable="currentPlayer.skillsAvailable"
+                          :currentPlayer="currentPlayer"
+                          :color="currentPlayer.color"
+                          v-on:currentPlayerUpdated="currentPlayerUpdated"
+                    ></Hand>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -13,25 +26,33 @@
 <script>
     import axios from 'axios';
     import DoorsZone from "./DoorsZone";
+    import Hand from "./Hand";
 
     export default {
         name: "Game",
-        components: {DoorsZone},
-        props: ['id'],
+        components: {Hand, DoorsZone},
+        props: [
+            'password',
+            'currentPlayer',
+        ],
         data: function () {
             return {
                 game: {},
-                remainingDoorsCount: Number,
-                gameId: Number,
-
-
+            }
+        },
+        methods: {
+            currentPlayerUpdated(player) {
+                this.$emit('currentPlayerUpdated', player)
             }
         },
         mounted() {
-            axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.$route.params.id}.json`)
+            axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.password}.json`)
                 .then(response => {
                     this.game = response.data
-                })
+                }).then(
+
+
+            )
 
                 .catch(error => {
                     console.log(error)
@@ -41,5 +62,7 @@
 </script>
 
 <style scoped>
-
+    .handStyle {
+        font-size: 8px;
+    }
 </style>
