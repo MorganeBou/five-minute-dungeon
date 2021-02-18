@@ -45,7 +45,6 @@
                         // set this.player as currentPlayer in App component, to be reused in any other component
                         this.$store.commit("SET_CURRENT_PLAYER", response.data)
 
-
                     })
 
                     .catch(error => {
