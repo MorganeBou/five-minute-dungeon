@@ -39,7 +39,6 @@
                 console.log($event)
                 console.log(position)
                 console.log(this.skillsAvailable)
-
                 axios.get(`https://five-minutes-dongeon-api.herokuapp.com/players/${this.currentPlayer.id}/use/${position}`)
                     .then(response => {
                         this.$emit('currentPlayerUpdated', response.data)

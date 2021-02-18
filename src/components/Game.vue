@@ -11,9 +11,9 @@
             <div class="row">
 
                 <div class="col-12">
-                    <Hand :skillsAvailable="currentPlayer.skillsAvailable"
-                          :currentPlayer="currentPlayer"
-                          :color="currentPlayer.color"
+                    <Hand :skillsAvailable="$store.state.currentPlayerTest.skillsAvailable"
+                          :currentPlayer="$store.state.currentPlayerTest"
+                          :color="$store.state.currentPlayerTest.color"
                           v-on:currentPlayerUpdated="currentPlayerUpdated"
                     ></Hand>
                 </div>
@@ -50,8 +50,6 @@
                 .then(response => {
                     this.game = response.data
                 }).then(
-
-
             )
 
                 .catch(error => {

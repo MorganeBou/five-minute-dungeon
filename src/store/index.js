@@ -10,8 +10,8 @@ export default new Vuex.Store({
 
 
   mutations: {
-    SET_CURRENT_PLAYER(state, playload){
-      state.currentPlayerTest = playload
+    SET_CURRENT_PLAYER(state, trucmuche){
+      state.currentPlayerTest = trucmuche
     }
   },
   actions: {

@@ -32,28 +32,22 @@
                 nameInput: '',
                 player: {},
                 game: {},
-
-
             }
         },
 
         methods: {
 
             joinTheGame: function () {
-
                 axios.post(`https://five-minutes-dongeon-api.herokuapp.com/players`, {
                     "name": this.nameInput,
                     "gamePassword": this.$route.params.password
                 })
                     .then(response => {
                         this.player = response.data
-
                         // set this.player as currentPlayer in App component, to be reused in any other component
                         this.$store.commit("SET_CURRENT_PLAYER", response.data)
                         // this.$emit('currentPlayerCreated',  this.player)
-
                         console.log(this.player)
-
                     })
 
                     .catch(error => {
@@ -64,8 +58,6 @@
             startTheGame: function () {
                 console.log("id de la game" + this.player.game.id)
                 console.log(this.$route.params.password)
-
-
                 this.$router.push({name: 'Game', params: {password: this.$route.params.password}})
 
 
