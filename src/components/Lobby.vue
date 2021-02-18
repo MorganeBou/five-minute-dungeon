@@ -2,7 +2,7 @@
 
     <div class="container w-75 d-flex justify-content-center p-2 ">
 
-        <div class="border border-warning rounded p-3" v-if="!player.id">
+        <div class="border border-warning rounded p-3" v-if="!$store.state.currentPlayerTest.id">
             <form @submit="joinTheGame">
                 <label>Nom du Joueur </label> <br>
                 <input type="text" v-model="nameInput"> <br>
@@ -12,7 +12,7 @@
         </div>
         <div class="border border-warning rounded p-3" v-else> Les futurs joueurs sont là !!!!!
             <div>
-                {{this.player.name}} <br>
+                {{$store.state.currentPlayerTest.name}} <br>
                 <button class="btn btn-success m-1" v-on:click="startTheGame"> Aller dans le GAME</button>
 
             </div>
@@ -30,7 +30,6 @@
         data: function () {
             return {
                 nameInput: '',
-                player: {},
                 game: {},
             }
         },
@@ -43,11 +42,10 @@
                     "gamePassword": this.$route.params.password
                 })
                     .then(response => {
-                        this.player = response.data
                         // set this.player as currentPlayer in App component, to be reused in any other component
                         this.$store.commit("SET_CURRENT_PLAYER", response.data)
-                        // this.$emit('currentPlayerCreated',  this.player)
-                        console.log(this.player)
+
+
                     })
 
                     .catch(error => {
