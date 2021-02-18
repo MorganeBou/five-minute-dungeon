@@ -36,7 +36,8 @@
 
         methods: {
 
-            joinTheGame: function () {
+            joinTheGame: function (event) {
+                event.preventDefault()
                 axios.post(`https://five-minutes-dongeon-api.herokuapp.com/players`, {
                     "name": this.nameInput,
                     "gamePassword": this.$route.params.password
@@ -53,7 +54,6 @@
             }
             ,
             startTheGame: function () {
-                console.log("id de la game" + this.player.game.id)
                 console.log(this.$route.params.password)
                 this.$router.push({name: 'Game', params: {password: this.$route.params.password}})
 
