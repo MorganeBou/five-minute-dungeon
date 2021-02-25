@@ -1,16 +1,16 @@
 <template>
-    <div class="container " :currentPlayer="currentPlayer">
+    <div class="container" >
         <div id="divheight">
 
             <ul class="row">
                 <li class="col-2 rounded"
-                    :class="color"
-                    v-for="(skillAvailable, index) in skillsAvailable"
+                    :class="$store.state.currentPlayerTest.color"
+                    v-for="(skillAvailable, index) in $store.state.currentPlayerTest.skillsAvailable"
                     :key="skillAvailable.index"
                     :position="index"
-                    v-on:click="useCard($event, index)"
+                    v-on:click="useCard(index)"
                 >
-                    <Skill :skillAvailable="skillsAvailable[index]"></Skill>
+                    <Skill :skillAvailable="$store.state.currentPlayerTest.skillsAvailable[index]"></Skill>
                 </li>
             </ul>
         </div>
@@ -21,33 +21,34 @@
 <script>
     import Skill from './Skill'
     import axios from 'axios'
+    // import {mapGetters} from 'vuex'
 
 
     export default {
         name: "Hand",
         components: {Skill},
         props: [
-            'skillsAvailable',
-            'color',
-            'currentPlayer'
+
         ],
         data: function () {
             return {}
         },
         methods: {
-            useCard($event, position) {
-                console.log($event)
+            useCard(position) {
+
                 console.log(position)
-                console.log(this.skillsAvailable)
-                axios.get(`https://five-minutes-dongeon-api.herokuapp.com/players/${this.currentPlayer.id}/use/${position}`)
+
+                axios.get(`https://five-minutes-dongeon-api.herokuapp.com/players/${this.$store.state.currentPlayerTest.id}/use/${position}`)
                     .then(response => {
-                        this.$emit('currentPlayerUpdated', response.data)
+
+                        this.$store.commit("SET_CURRENT_PLAYER", response.data)
                     })
                     .catch(error => {
                         console.log(error)
                     })
             }
         },
+
     }
 
 </script>

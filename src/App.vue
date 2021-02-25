@@ -1,12 +1,13 @@
 <template>
 
     <div id="app">
-        <div><img alt="Logo FiveMinuteDungeon" src="./assets/logo.png"></div>
-        <router-link class="btn btn-success" to="/">Retour à zéro</router-link>
-        <router-view :currentPlayer="currentPlayer"
-                     v-on:currentPlayerUpdated="currentPlayer = $event"
-                     v-on:currentPlayerCreated="currentPlayer = $event"
-        />
+
+        <a href="/">
+            <img alt="Logo FiveMinuteDungeon" src="./assets/logo.png" height="100px">
+        </a>
+
+<!--        <router-link class="btn btn-success" to="/">Retour à zéro</router-link>-->
+        <router-view/>
     </div>
 </template>
 
@@ -16,7 +17,7 @@
         components: {},
         data: function () {
             return {
-                currentPlayer: {}
+
             }
         },
     }

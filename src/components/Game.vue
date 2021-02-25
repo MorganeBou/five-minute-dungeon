@@ -3,19 +3,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-3"></div>
-                <DoorsZone :game="game" v-on:doorChanged="game = $event">
-
-                </DoorsZone>
+                <DoorsZone/>
                 <div class="col-3"></div>
             </div>
             <div class="row">
 
                 <div class="col-12">
-                    <Hand :skillsAvailable="$store.state.currentPlayerTest.skillsAvailable"
-                          :currentPlayer="$store.state.currentPlayerTest"
-                          :color="$store.state.currentPlayerTest.color"
-                          v-on:currentPlayerUpdated="currentPlayerUpdated"
-                    ></Hand>
+                    <Hand/>
                 </div>
             </div>
         </div>
@@ -33,11 +27,11 @@
         components: {Hand, DoorsZone},
         props: [
             'password',
-            'currentPlayer',
+
         ],
         data: function () {
             return {
-                game: {},
+
             }
         },
         methods: {
@@ -48,7 +42,7 @@
         mounted() {
             axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.password}.json`)
                 .then(response => {
-                    this.game = response.data
+                  this.$store.commit("SET_GAME", response.data)
                 }).then(
             )
 

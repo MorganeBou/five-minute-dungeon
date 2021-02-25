@@ -4,16 +4,19 @@
             <div :class="'col-'+12/skillAvailable.length"
                  v-for="skill in skillAvailable"
                  :key="skill.index">
+
+
                 {{skillAvailable.length}} - {{skill.toLowerCase()}}
-                <div>
-                    <img
-                            class="rounded-circle justify-content-center "
-                            :src="'/img/symbols/'+skill.toLowerCase()+'.png'"
-                    >
-                </div>
+                <img
+                        class="rounded-circle justify-content-center "
+                        :src="'/img/symbols/'+skill.toLowerCase()+'.png'"
+                >
             </div>
+
+
         </div>
     </div>
+
 </template>
 
 <script>
@@ -22,10 +25,7 @@
         props: [
             'skillAvailable'
         ],
-        methods: {
-
-
-        }
+        methods: {}
     }
 </script>
 

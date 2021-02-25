@@ -10,11 +10,11 @@
             </form>
 
         </div>
-        <div class="border border-warning rounded p-3" v-else> Les futurs joueurs sont là !!!!!
-            <div>
-                {{$store.state.currentPlayerTest.name}} <br>
-                <button class="btn btn-success m-1" v-on:click="startTheGame"> Aller dans le GAME</button>
+        <div class="border border-warning rounded p-3" v-else>
+            {{$store.state.currentPlayerTest.name}} : <br> Les futurs joueurs sont là !!!!! <br>
 
+            <div>
+                <button class="btn btn-success m-1" v-on:click="startTheGame"> Aller dans le GAME</button>
             </div>
 
         </div>
@@ -30,7 +30,6 @@
         data: function () {
             return {
                 nameInput: '',
-                game: {},
             }
         },
 
@@ -58,22 +57,6 @@
                 this.$router.push({name: 'Game', params: {password: this.$route.params.password}})
 
 
-                // axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.player.game.id}.json`,
-                //     {
-                //         "id": this.player.game.id,
-                //
-                //         "players": []
-                //     }
-                // )
-                //     .then(response => {
-                //         // this.$router.push({name: 'Game', params: {id: this.$route.params.password }})
-                //         console.log(response.data)
-                //
-                //
-                //     })
-                //     .catch(error => {
-                //         console.log(error)
-                //     })
             }
             ,
 
