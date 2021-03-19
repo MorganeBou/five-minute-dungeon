@@ -1,21 +1,18 @@
 <template>
-    <div>
-        <div class="row">
-            <div :class="'col-'+12/skillAvailable.length"
-                 v-for="skill in skillAvailable"
-                 :key="skill.index">
+        <div class="skill row">
+            <div :class="'col-'+12/skill.length"
+                 v-for="symbol in skill"
+                 :key="symbol.index">
 
 
-                {{skillAvailable.length}} - {{skill.toLowerCase()}}
-                <img
-                        class="rounded-circle justify-content-center "
-                        :src="'/img/symbols/'+skill.toLowerCase()+'.png'"
+<!--                {{skillAvailable.length}} - {{symbol.toLowerCase()}}-->
+                <img class="symbol rounded-circle justify-content-center "
+                        :src="'/img/symbols/'+symbol.toLowerCase()+'.png'"
                 >
             </div>
 
 
         </div>
-    </div>
 
 </template>
 
@@ -23,15 +20,19 @@
     export default {
         name: "Skill",
         props: [
-            'skillAvailable'
+            'skill'
         ],
         methods: {}
     }
 </script>
 
 <style scoped>
-    img {
+    .skill{
+        height: 300px;
+    }
+    .symbol {
         width: 50px;
         height: 50px;
+        margin: 125px 5px 0 5px;
     }
 </style>

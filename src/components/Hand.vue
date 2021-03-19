@@ -1,16 +1,16 @@
 <template>
     <div class="container" >
         <div id="divheight">
-
+La Hand
             <ul class="row">
-                <li class="col-2 rounded"
+                <li class="col-2 rounded border"
                     :class="$store.state.currentPlayerTest.color"
                     v-for="(skillAvailable, index) in $store.state.currentPlayerTest.skillsAvailable"
                     :key="skillAvailable.index"
                     :position="index"
                     v-on:click="useCard(index)"
                 >
-                    <Skill :skillAvailable="$store.state.currentPlayerTest.skillsAvailable[index]"></Skill>
+                    <Skill :skill="$store.state.currentPlayerTest.skillsAvailable[index]"></Skill>
                 </li>
             </ul>
         </div>
@@ -21,15 +21,13 @@
 <script>
     import Skill from './Skill'
     import axios from 'axios'
-    // import {mapGetters} from 'vuex'
+
 
 
     export default {
         name: "Hand",
         components: {Skill},
-        props: [
 
-        ],
         data: function () {
             return {}
         },
@@ -42,6 +40,15 @@
                     .then(response => {
 
                         this.$store.commit("SET_CURRENT_PLAYER", response.data)
+
+                        axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.$store.state.gameTest.id}.json`)
+                            .then(response => {
+                                this.$store.commit("SET_GAME", response.data)
+                            })
+                            .catch(error => {
+                                console.log(error)
+                            })
+
                     })
                     .catch(error => {
                         console.log(error)
