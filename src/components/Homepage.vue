@@ -34,12 +34,12 @@
                     .then(response => {
                         this.$store.commit("SET_GAME", response.data)
 
-                        console.log(this.$store.state.gameTest.id)
+                        console.log(this.$store.state.game.id)
 
                     })
                     .then(() => {
 
-                        this.$router.push({name: 'Lobby', params: {password: this.$store.state.gameTest.password}})
+                        this.$router.push({name: 'Lobby', params: {password: this.$store.state.game.password}})
                     })
                     .catch(error => {
                         console.log(error)

@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        currentPlayerTest: {},
-        gameTest: {}
+        currentPlayer: {},
+        game: {}
 
 
     },
@@ -16,10 +16,13 @@ export default new Vuex.Store({
 
     mutations: {
         SET_CURRENT_PLAYER(state, payload) {
-            state.currentPlayerTest = payload
+            state.currentPlayer = payload
         },
         SET_GAME(state, payload) {
-            state.gameTest = payload
+            state.game = payload
+        },
+        DECREASE_TIMER(state) {
+            state.game.timer = state.game.timer -1
         }
     },
     actions: {},

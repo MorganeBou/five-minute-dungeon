@@ -29,6 +29,7 @@
 <style scoped>
     .skill{
         height: 300px;
+
     }
     .symbol {
         width: 50px;

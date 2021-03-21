@@ -7,11 +7,11 @@
                 <div class="col-3"></div>
             </div>
             <div class="row">
-
                 <div class="col-12">
                     <Playground/>
                 </div>
-            </div>  <div class="row">
+            </div>
+            <div class="row">
 
                 <div class="col-12">
                     <Hand/>
@@ -36,9 +36,7 @@
 
         ],
         data: function () {
-            return {
-
-            }
+            return {}
         },
         methods: {
             currentPlayerUpdated(player) {
@@ -48,7 +46,7 @@
         mounted() {
             axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.password}.json`)
                 .then(response => {
-                  this.$store.commit("SET_GAME", response.data)
+                    this.$store.commit("SET_GAME", response.data)
                 })
                 .catch(error => {
                     console.log(error)
@@ -58,7 +56,5 @@
 </script>
 
 <style scoped>
-    .handStyle {
-        font-size: 8px;
-    }
+
 </style>
