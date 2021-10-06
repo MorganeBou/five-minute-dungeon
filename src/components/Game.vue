@@ -1,10 +1,22 @@
 <template>
     <div>
-        <div>
-            <DoorsZone :remainingDoorsCount="this.game.remainingDoorsCount"
-                       :gameId="this.game.id">
+        <div class="container">
+            <div class="row">
+                <div class="col-3"></div>
+                <DoorsZone/>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <Playground/>
+                </div>
+            </div>
+            <div class="row">
 
-            </DoorsZone>
+                <div class="col-12">
+                    <Hand/>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -13,26 +25,29 @@
 <script>
     import axios from 'axios';
     import DoorsZone from "./DoorsZone";
+    import Hand from "./Hand";
+    import Playground from "./Playground";
 
     export default {
         name: "Game",
-        components: {DoorsZone},
-        props: ['id'],
+        components: {Playground, Hand, DoorsZone},
+        props: [
+            'password',
+
+        ],
         data: function () {
-            return {
-                game: {},
-                remainingDoorsCount: Number,
-                gameId: Number,
-
-
+            return {}
+        },
+        methods: {
+            currentPlayerUpdated(player) {
+                this.$emit('currentPlayerUpdated', player)
             }
         },
         mounted() {
-            axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.$route.params.id}.json`)
+            axios.get(`https://five-minutes-dongeon-api.herokuapp.com/games/${this.password}.json`)
                 .then(response => {
-                    this.game = response.data
+                    this.$store.commit("SET_GAME", response.data)
                 })
-
                 .catch(error => {
                     console.log(error)
                 })

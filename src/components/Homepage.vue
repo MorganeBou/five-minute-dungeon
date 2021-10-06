@@ -1,23 +1,26 @@
 <template>
     <div class="container">
-        <router-link class="btn btn-success m-1" to="/DungeonExplorer">Accèder à l'explorateur de donjon</router-link>
+        <div class="p-5" >
+
+            <router-link style="width:190px" class="btn btn-secondary m-1" to="/dungeon-explorer">Explorateur de donjon</router-link>
+            <button style="width:190px" class="btn btn-primary m-1" v-on:click="this.initTheGame"> Nouvelle partie</button>
+        </div>
 
 
-        <button class="btn btn-success" v-on:click="this.initTheGame">Lancer une partie</button>
-        {{this.game}}
 
 
-    </div>
+
+   </div>
 
 </template>
 
 <script>
-    import axios from 'axios';
+   import axios from 'axios';
+
     export default {
         name: "HomePage",
         data: function () {
             return {
-               // game: {},
 
 
             }
@@ -29,11 +32,14 @@
                 console.log(event)
                 axios.post(`https://five-minutes-dongeon-api.herokuapp.com/games`, {})
                     .then(response => {
-                        this.game = response.data
-                        console.log(this.game.id)
+                        this.$store.commit("SET_GAME", response.data)
+
+                        console.log(this.$store.state.game.id)
+
                     })
-                    .then(()=> {
-                        this.$router.push({name: 'Game', params: {id:this.game.id}})
+                    .then(() => {
+
+                        this.$router.push({name: 'Lobby', params: {password: this.$store.state.game.password}})
                     })
                     .catch(error => {
                         console.log(error)

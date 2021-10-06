@@ -2,7 +2,7 @@
     <div>
         <h1>LISTE DES DOURES</h1>
 
-        <div class="d-flex justify-content-center bd-highlight d-flex flex-wrap">
+        <div class="d-flex justify-content-center bd-highlight flex-wrap">
 
             <div v-for="door in doors" :key="door.id">
                 <Door :image-url="door.imageUrl"></Door>
